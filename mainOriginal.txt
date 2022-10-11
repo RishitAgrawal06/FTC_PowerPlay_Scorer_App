@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'chocolate boy'),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -78,7 +78,6 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-
         child: Column(
           // Column is also a layout widget. It takes a list of children and
           // arranges them vertically. By default, it sizes itself to fit its
@@ -96,36 +95,6 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            SizedBox(
-              height: 50,
-            ),
-            ElevatedButton.icon(
-              // <-- ElevatedButton
-              onPressed: () {},
-              icon: Icon(
-                Icons.download,
-                size: 24.0,
-              ),
-              label: Text('Download'),
-            ),
-            TextButton.icon(
-              // <-- TextButton
-              onPressed: () {},
-              icon: Icon(
-                Icons.download,
-                size: 24.0,
-              ),
-              label: Text('Download'),
-            ),
-            OutlinedButton.icon(
-              // <-- OutlinedButton
-              onPressed: () {},
-              icon: Icon(
-                Icons.download,
-                size: 24.0,
-              ),
-              label: Text('Download'),
-            ),
             const Text(
               'You have clicked the button this many times:',
             ),
@@ -139,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
-        child: const Icon(Icons.remove),
+        child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
