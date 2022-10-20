@@ -106,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Icons.download,
                 size: 24.0,
               ),
-              label: Text('Download'),
+              label: Text('Download2'),
             ),
             TextButton.icon(
               // <-- TextButton
@@ -115,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Icons.download,
                 size: 24.0,
               ),
-              label: Text('Download1'),
+              label: Text('Download3'),
             ),
             OutlinedButton.icon(
               // <-- OutlinedButton
@@ -124,7 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Icons.download,
                 size: 24.0,
               ),
-              label: Text('Download2'),
+              label: Text('Download4'),
             ),
             const Text(
               'You have clicked the button this many times:',
