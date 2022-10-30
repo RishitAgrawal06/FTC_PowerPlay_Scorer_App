@@ -1,4 +1,7 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
+
 // import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -20,7 +23,7 @@ class MyApp extends StatelessWidget {
           foregroundColor: Colors.white,
         ),
         iconTheme: const IconThemeData(
-          color: Colors.white,
+          color: Color.fromARGB(255, 1, 56, 102),
         ),
 
         // fontFamily: 'BebasNeue',
@@ -35,7 +38,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         // primarySwatch: Colors.red,
       ),
-      home: const MyHomePage(),
+      home: MyHomePage(),
     );
   }
 }
@@ -71,6 +74,28 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  num _autoTerminal = 0;
+  num _autoGround = 0;
+  num _autoLow = 0;
+  num _autoMedium = 0;
+  num _autoHigh = 0;
+  bool _autoParking = false;
+  bool _autoSleeve = false;
+  num _AUTONUM = 0;
+  num _AUTOTOTAL = 0;
+  num _teleTerminal = 0;
+  num _teleGround = 0;
+  num _teleLow = 0;
+  num _teleMedium = 0;
+  num _teleHigh = 0;
+  num _teleHigh = 0;
+  num _endOwned = 0;
+  bool _endBeacon = false;
+  bool _endCircuit = false;
+  bool _endTerminal = false; 
+  bool _endParked = false;
+
+  num _defaultValue = 0;
   // void _incrementCounter() {
   //   setState(() {
   //     // This call to setState tells the Flutter framework that something has
@@ -114,7 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       body: ListView(
-        children: const <Widget>[
+        children: <Widget>[
           Card(
             child: ListTile(
               // height: 50,
@@ -126,7 +151,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     fontWeight: FontWeight.bold,
                     fontStyle: FontStyle.italic,
                     fontSize: 18,
-                    fontFamily: 'OSwald',
+                    fontFamily: 'Oswald',
                     color: Colors.white,
                   ),
                 ),
@@ -148,8 +173,26 @@ class _MyHomePageState extends State<MyHomePage> {
                     fontFamily: 'Anton',
                     color: Color.fromARGB(255, 1, 56, 102),
                   ),
-                ),
-                tileColor: Color.fromARGB(255, 144, 203, 252),
+              ),
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  // autoConesTerminal!=0? 
+                  // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
+              	  // new Text(autoConesTerminal.toString()),
+                  // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
+                  IconButton(
+                    icon: Icon(Icons.remove_circle_sharp, size: 30, color: Color.fromARGB(255, 1, 56, 102), ),
+                    onPressed: ()=>setState(()=>_autoTerminal--),    
+                  ),
+                  Text(_autoTerminal.toString()),
+                  IconButton(
+                    icon: Icon(Icons.add_circle_sharp, size: 30, color: Color.fromARGB(255, 1, 56, 102)),
+                    onPressed: ()=>setState(()=>_autoTerminal++),
+                  ),
+                ]
+              ),
+              tileColor: Color.fromARGB(255, 144, 203, 252),
               ),
           ),
           Card(
@@ -164,7 +207,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: Color.fromARGB(255, 1, 56, 102),
                   ),
                 ),
-                tileColor: Color.fromARGB(255, 144, 203, 252),
+              tileColor: Color.fromARGB(255, 144, 203, 252),
               ),
           ),
           Card(
@@ -253,7 +296,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     fontWeight: FontWeight.bold,
                     fontStyle: FontStyle.italic,
                     fontSize: 18,
-                    fontFamily: 'OSwald',
+                    fontFamily: 'Oswald',
                     color: Colors.white,
                   ),
                 ),
@@ -350,7 +393,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     fontWeight: FontWeight.bold,
                     fontStyle: FontStyle.italic,
                     fontSize: 18,
-                    fontFamily: 'OSwald',
+                    fontFamily: 'Oswald',
                     color: Colors.white,
                   ),
                 ),
@@ -432,7 +475,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     fontWeight: FontWeight.bold,
                     fontStyle: FontStyle.italic,
                     fontSize: 18,
-                    fontFamily: 'OSwald',
+                    fontFamily: 'Oswald',
                     color: Colors.white,
                     decoration: TextDecoration.underline,
                   ),
@@ -617,7 +660,17 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
+class TooltipSample extends StatelessWidget {
+  const TooltipSample({super.key});
 
+  @override
+  Widget build(BuildContext context) {
+    return const Tooltip(
+      message: 'I am a Tooltip',
+      // Text('Hover over the text to show a tooltip.'),
+    );
+  }
+}
 // class SampleListView extends StatelessWidget {
 //   const SampleListView({Key? key, required this.entries}) : super(key: key);
 
