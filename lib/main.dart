@@ -100,6 +100,18 @@ class _MyHomePageState extends State<MyHomePage> {
               fontWeight: FontWeight.bold,
               fontSize: 30,
             )),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(
+              Icons.restart_alt,
+              size: 30,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              // do something
+          },
+          ),
+        ],
       ),
       body: ListView(
         children: const <Widget>[
@@ -109,7 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
               // color: const Color.fromARGB(255, 172, 13, 1),
               title: Center(
                 child: Text(
-                  'Autonomous - 30 Seconds',
+                  'Autonomous',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontStyle: FontStyle.italic,
@@ -118,6 +130,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: Colors.white,
                   ),
                 ),
+              ),
+              subtitle: Center(
+                child: Text('30 Seconds', style: TextStyle(fontSize: 12, color: Colors.white)),
               ),
               tileColor: Colors.blue,
             ),
@@ -233,7 +248,7 @@ class _MyHomePageState extends State<MyHomePage> {
               // color: const Color.fromARGB(255, 172, 13, 1),
               title: Center(
                 child: Text(
-                  'Driver Controlled - 60 Seconds',
+                  'Driver Controlled',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontStyle: FontStyle.italic,
@@ -242,6 +257,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: Colors.white,
                   ),
                 ),
+              ),
+              subtitle: Center(
+                child: Text('60 Seconds', style: TextStyle(fontSize: 12, color: Colors.white)),
               ),
               tileColor: Colors.blue,
             ),
@@ -327,7 +345,7 @@ class _MyHomePageState extends State<MyHomePage> {
               // color: const Color.fromARGB(255, 172, 13, 1),
               title: Center(
                 child: Text(
-                  'End-Game - 30 seconds',
+                  'End-Game',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontStyle: FontStyle.italic,
@@ -336,6 +354,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: Colors.white,
                   ),
                 ),
+              ),
+              subtitle: Center(
+                child: Text('30 Seconds', style: TextStyle(fontSize: 12, color: Colors.white)),
               ),
               tileColor: Colors.blue,
             ),
@@ -413,6 +434,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     fontSize: 18,
                     fontFamily: 'OSwald',
                     color: Colors.white,
+                    decoration: TextDecoration.underline,
                   ),
                 ),
               ),
