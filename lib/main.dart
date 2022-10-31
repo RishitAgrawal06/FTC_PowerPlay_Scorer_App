@@ -95,6 +95,8 @@ class _MyHomePageState extends State<MyHomePage> {
   bool _endCircuit = false;
   bool _endTerminal = false; 
   bool _endParked = false;
+  num _endNum = 0;
+  num _endTotal = 0;
   num _totalAll = 0;
   num _defaultValue = 0;
   // void _incrementCounter() {
@@ -135,28 +137,31 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             onPressed: () {
               setState(() {
-                _autoTerminal = _defaultValue;
-                _autoGround = _defaultValue;
-                _autoLow = _defaultValue;
-                _autoMedium = _defaultValue;
-                _autoHigh = _defaultValue;
+                _autoTerminal = 0;
+                _autoGround = 0;
+                _autoLow = 0;
+                _autoMedium = 0;
+                _autoHigh = 0;
                 _autoParking = false;
                 _autoSleeve = false;
-                _autoNum = _defaultValue;
-                _autoTotal = _defaultValue;
-                _teleTerminal = _defaultValue;
-                _teleGround = _defaultValue;
-                _teleLow = _defaultValue;
-                _teleMedium = _defaultValue;
-                _teleHigh = _defaultValue;
-                _teleNum = _defaultValue;
-                _teleTotal = _defaultValue;
-                _endOwned = _defaultValue;
+                _autoNum = 0;
+                _autoTotal = 0;
+                _teleTerminal = 0;
+                _teleGround = 0;
+                _teleLow = 0;
+                _teleMedium = 0;
+                _teleHigh = 0;
+                _teleNum = 0;
+                _teleTotal = 0;
+                _endOwned = 0;
                 _endBeacon = false;
                 _endCircuit = false;
-                _endTerminal = false;
+                _endTerminal = false; 
                 _endParked = false;
-                _totalAll = _defaultValue;
+                _endNum = 0;
+                _endTotal = 0;
+                _totalAll = 0;
+                _defaultValue = 0;
               });
               },
           ),
@@ -207,12 +212,22 @@ class _MyHomePageState extends State<MyHomePage> {
                   // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
                   IconButton(
                     icon: Icon(Icons.remove_circle_sharp, size: 30, color: Color.fromARGB(255, 1, 56, 102), ),
-                    onPressed: ()=>setState(()=>_autoTerminal--),    
+                    onPressed: ()=>setState((){
+                      _autoTerminal--; 
+                      _autoNum--; 
+                      _autoTotal--;
+                      _totalAll--;
+                    }),  
                   ),
                   Text(_autoTerminal.toString()),
                   IconButton(
                     icon: Icon(Icons.add_circle_sharp, size: 30, color: Color.fromARGB(255, 1, 56, 102)),
-                    onPressed: ()=>setState(()=>_autoTerminal++),
+                    onPressed: ()=>setState((){
+                      _autoTerminal++; 
+                      _autoNum++;  
+                      _autoTotal++;
+                      _totalAll++;
+                    }),
                   ),
                 ]
               ),
@@ -240,12 +255,22 @@ class _MyHomePageState extends State<MyHomePage> {
                   // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
                   IconButton(
                     icon: Icon(Icons.remove_circle_sharp, size: 30, color: Color.fromARGB(255, 1, 56, 102), ),
-                    onPressed: ()=>setState(()=>_autoGround--),    
+                    onPressed: ()=>setState((){
+                      _autoGround--; 
+                      _autoNum--;
+                      _autoTotal-=2;
+                      _totalAll-=2; 
+                    }),  
                   ),
                   Text(_autoGround.toString()),
                   IconButton(
                     icon: Icon(Icons.add_circle_sharp, size: 30, color: Color.fromARGB(255, 1, 56, 102)),
-                    onPressed: ()=>setState(()=>_autoGround++),
+                    onPressed: ()=>setState((){
+                      _autoGround++; 
+                      _autoNum++; 
+                      _autoTotal+=2;
+                      _totalAll+=2; 
+                    }),
                   ),
                 ]
               ),
@@ -264,6 +289,34 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: Color.fromARGB(255, 1, 56, 102),
                   ),
                 ),
+                trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  // autoConesTerminal!=0? 
+                  // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
+              	  // new Text(autoConesTerminal.toString()),
+                  // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
+                  IconButton(
+                    icon: Icon(Icons.remove_circle_sharp, size: 30, color: Color.fromARGB(255, 1, 56, 102), ),
+                    onPressed: ()=>setState((){
+                      _autoLow--; 
+                      _autoNum--; 
+                      _autoTotal -= 3;
+                      _totalAll -= 3;
+                    }),  
+                  ),
+                  Text(_autoLow.toString()),
+                  IconButton(
+                    icon: Icon(Icons.add_circle_sharp, size: 30, color: Color.fromARGB(255, 1, 56, 102)),
+                    onPressed: ()=>setState((){
+                      _autoLow++; 
+                      _autoNum++;  
+                      _autoTotal += 3;
+                      _totalAll += 3;
+                    }),
+                  ),
+                ]
+              ),
                 tileColor: Color.fromARGB(255, 144, 203, 252),
               ),
           ),
@@ -279,6 +332,34 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: Color.fromARGB(255, 1, 56, 102),
                   ),
                 ),
+                trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  // autoConesTerminal!=0? 
+                  // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
+              	  // new Text(autoConesTerminal.toString()),
+                  // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
+                  IconButton(
+                    icon: Icon(Icons.remove_circle_sharp, size: 30, color: Color.fromARGB(255, 1, 56, 102), ),
+                    onPressed: ()=>setState((){
+                      _autoMedium--; 
+                      _autoNum--; 
+                      _autoTotal -= 4;
+                      _totalAll -= 4;
+                    }),  
+                  ),
+                  Text(_autoMedium.toString()),
+                  IconButton(
+                    icon: Icon(Icons.add_circle_sharp, size: 30, color: Color.fromARGB(255, 1, 56, 102)),
+                    onPressed: ()=>setState((){
+                      _autoMedium++; 
+                      _autoNum++;
+                      _autoTotal += 4;
+                      _totalAll += 4;  
+                    }),
+                  ),
+                ]
+              ),
                 tileColor: Color.fromARGB(255, 144, 203, 252),
               ),
           ),
@@ -294,6 +375,34 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: Color.fromARGB(255, 1, 56, 102),
                   ),
                 ),
+                trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  // autoConesTerminal!=0? 
+                  // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
+              	  // new Text(autoConesTerminal.toString()),
+                  // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
+                  IconButton(
+                    icon: Icon(Icons.remove_circle_sharp, size: 30, color: Color.fromARGB(255, 1, 56, 102), ),
+                    onPressed: ()=>setState((){
+                      _autoHigh--; 
+                      _autoNum--;
+                      _autoTotal -= 5;
+                      _totalAll -= 5; 
+                    }),  
+                  ),
+                  Text(_autoHigh.toString()),
+                  IconButton(
+                    icon: Icon(Icons.add_circle_sharp, size: 30, color: Color.fromARGB(255, 1, 56, 102)),
+                    onPressed: ()=>setState((){
+                      _autoHigh++; 
+                      _autoNum++;
+                      _autoTotal += 5;
+                      _totalAll += 5;  
+                    }),
+                  ),
+                ]
+              ),
                 tileColor: Color.fromARGB(255, 144, 203, 252),
               ),
           ),
@@ -361,6 +470,34 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: Color.fromARGB(255, 1, 56, 102),
                   ),
                 ),
+                trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  // autoConesTerminal!=0? 
+                  // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
+              	  // new Text(autoConesTerminal.toString()),
+                  // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
+                  IconButton(
+                    icon: Icon(Icons.remove_circle_sharp, size: 30, color: Color.fromARGB(255, 1, 56, 102), ),
+                    onPressed: ()=>setState((){
+                      _teleTerminal--; 
+                      _teleNum--;
+                      _teleTotal--;
+                      _totalAll--;  
+                    }),  
+                  ),
+                  Text(_teleTerminal.toString()),
+                  IconButton(
+                    icon: Icon(Icons.add_circle_sharp, size: 30, color: Color.fromARGB(255, 1, 56, 102)),
+                    onPressed: ()=>setState((){
+                      _teleTerminal++; 
+                      _teleNum++;
+                      _teleTotal++;
+                      _totalAll++;  
+                    }),
+                  ),
+                ]
+              ),
                 tileColor: Color.fromARGB(255, 144, 203, 252),
               ),
           ),
@@ -376,6 +513,34 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: Color.fromARGB(255, 1, 56, 102),
                   ),
                 ),
+                trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  // autoConesTerminal!=0? 
+                  // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
+              	  // new Text(autoConesTerminal.toString()),
+                  // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
+                  IconButton(
+                    icon: Icon(Icons.remove_circle_sharp, size: 30, color: Color.fromARGB(255, 1, 56, 102), ),
+                    onPressed: ()=>setState((){
+                      _teleGround--; 
+                      _teleNum--; 
+                      _teleTotal-=2;
+                      _totalAll-=2;
+                    }),  
+                  ),
+                  Text(_teleGround.toString()),
+                  IconButton(
+                    icon: Icon(Icons.add_circle_sharp, size: 30, color: Color.fromARGB(255, 1, 56, 102)),
+                    onPressed: ()=>setState((){
+                      _teleGround++; 
+                      _teleNum++; 
+                      _teleTotal+=2;
+                      _totalAll+=2; 
+                    }),
+                  ),
+                ]
+              ),
                 tileColor: Color.fromARGB(255, 144, 203, 252),
               ),
           ),
@@ -391,6 +556,34 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: Color.fromARGB(255, 1, 56, 102),
                   ),
                 ),
+                trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  // autoConesTerminal!=0? 
+                  // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
+              	  // new Text(autoConesTerminal.toString()),
+                  // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
+                  IconButton(
+                    icon: Icon(Icons.remove_circle_sharp, size: 30, color: Color.fromARGB(255, 1, 56, 102), ),
+                    onPressed: ()=>setState((){
+                      _teleLow--; 
+                      _teleNum--;
+                      _teleTotal-=3;
+                      _totalAll-=3; 
+                    }),  
+                  ),
+                  Text(_teleLow.toString()),
+                  IconButton(
+                    icon: Icon(Icons.add_circle_sharp, size: 30, color: Color.fromARGB(255, 1, 56, 102)),
+                    onPressed: ()=>setState((){
+                      _teleLow++; 
+                      _teleNum++;
+                      _teleTotal+=3;
+                      _totalAll+=3;  
+                    }),
+                  ),
+                ]
+              ),
                 tileColor: Color.fromARGB(255, 144, 203, 252),
               ),
           ),
@@ -406,6 +599,34 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: Color.fromARGB(255, 1, 56, 102),
                   ),
                 ),
+                trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  // autoConesTerminal!=0? 
+                  // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
+              	  // new Text(autoConesTerminal.toString()),
+                  // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
+                  IconButton(
+                    icon: Icon(Icons.remove_circle_sharp, size: 30, color: Color.fromARGB(255, 1, 56, 102), ),
+                    onPressed: ()=>setState((){
+                      _teleMedium--; 
+                      _teleNum--;
+                      _teleTotal-=4;
+                      _totalAll-=4; 
+                    }),  
+                  ),
+                  Text(_teleMedium.toString()),
+                  IconButton(
+                    icon: Icon(Icons.add_circle_sharp, size: 30, color: Color.fromARGB(255, 1, 56, 102)),
+                    onPressed: ()=>setState((){
+                      _teleMedium++; 
+                      _teleNum++; 
+                      _teleTotal+=4;
+                      _totalAll+=4; 
+                    }),
+                  ),
+                ]
+              ),
                 tileColor: Color.fromARGB(255, 144, 203, 252),
               ),
           ),
@@ -421,6 +642,34 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: Color.fromARGB(255, 1, 56, 102),
                   ),
                 ),
+                trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  // autoConesTerminal!=0? 
+                  // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
+              	  // new Text(autoConesTerminal.toString()),
+                  // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
+                  IconButton(
+                    icon: Icon(Icons.remove_circle_sharp, size: 30, color: Color.fromARGB(255, 1, 56, 102), ),
+                    onPressed: ()=>setState((){
+                      _teleHigh--; 
+                      _teleNum--;
+                      _teleTotal-=5;
+                      _totalAll-=5; 
+                    }),  
+                  ),
+                  Text(_teleHigh.toString()),
+                  IconButton(
+                    icon: Icon(Icons.add_circle_sharp, size: 30, color: Color.fromARGB(255, 1, 56, 102)),
+                    onPressed: ()=>setState((){
+                      _teleHigh++; 
+                      _teleNum++;
+                      _teleTotal+=5;
+                      _totalAll+=5;  
+                    }),
+                  ),
+                ]
+              ),
                 tileColor: Color.fromARGB(255, 144, 203, 252),
               ),
           ),
@@ -458,6 +707,34 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: Color.fromARGB(255, 1, 56, 102),
                   ),
                 ),
+                trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  // autoConesTerminal!=0? 
+                  // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
+              	  // new Text(autoConesTerminal.toString()),
+                  // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
+                  IconButton(
+                    icon: Icon(Icons.remove_circle_sharp, size: 30, color: Color.fromARGB(255, 1, 56, 102), ),
+                    onPressed: ()=>setState((){
+                      _endOwned--; 
+                      _endNum--;
+                      _endTotal-=3; 
+                      _totalAll-=3;
+                    }),  
+                  ),
+                  Text(_endOwned.toString()),
+                  IconButton(
+                    icon: Icon(Icons.add_circle_sharp, size: 30, color: Color.fromARGB(255, 1, 56, 102)),
+                    onPressed: ()=>setState((){
+                      _endOwned++; 
+                      _endNum++;
+                      _endTotal+=3;
+                      _totalAll+=3;  
+                    }),
+                  ),
+                ]
+              ),
                 tileColor: Color.fromARGB(255, 144, 203, 252),
               ),
           ),
@@ -539,6 +816,16 @@ class _MyHomePageState extends State<MyHomePage> {
                     decoration: TextDecoration.underline,
                   ),
                 ),
+                trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  // autoConesTerminal!=0? 
+                  // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
+              	  // new Text(autoConesTerminal.toString()),
+                  // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
+                  Text(_autoTotal.toString(), textScaleFactor: 1.3),
+                ]
+              ),
                 tileColor: Color.fromARGB(255, 144, 203, 252),
               ),
           ),
@@ -555,6 +842,16 @@ class _MyHomePageState extends State<MyHomePage> {
                     decoration: TextDecoration.underline,
                   ),
                 ),
+                trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  // autoConesTerminal!=0? 
+                  // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
+              	  // new Text(autoConesTerminal.toString()),
+                  // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
+                  Text(_teleTotal.toString(), textScaleFactor: 1.3),
+                ]
+              ),
                 tileColor: Color.fromARGB(255, 144, 203, 252),
               ),
           ),
@@ -571,6 +868,16 @@ class _MyHomePageState extends State<MyHomePage> {
                     decoration: TextDecoration.underline,
                   ),
                 ),
+                trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  // autoConesTerminal!=0? 
+                  // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
+              	  // new Text(autoConesTerminal.toString()),
+                  // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
+                  Text(_endTotal.toString(), textScaleFactor: 1.3),
+                ]
+              ),
                 tileColor: Color.fromARGB(255, 144, 203, 252),
               ),
           ),
@@ -587,6 +894,19 @@ class _MyHomePageState extends State<MyHomePage> {
                     decoration: TextDecoration.underline,
                   ),
                 ),
+                trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  // autoConesTerminal!=0? 
+                  // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
+              	  // new Text(autoConesTerminal.toString()),
+                  // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
+                  Text(_totalAll.toString(), textScaleFactor: 1.5, style: TextStyle(
+                    color: Color.fromARGB(255, 196, 229, 255),
+                    fontWeight: FontWeight.bold,
+                  ),),
+                ]
+              ),
                 tileColor: Color.fromARGB(255, 1, 56, 102),
               ),
           ),
@@ -698,18 +1018,6 @@ class _MyHomePageState extends State<MyHomePage> {
         //   ),
         // ],
       ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
-}
-
-class TooltipSample extends StatelessWidget {
-  const TooltipSample({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Tooltip(
-      message: 'I am a Tooltip',
-      // Text('Hover over the text to show a tooltip.'),
     );
   }
 }
