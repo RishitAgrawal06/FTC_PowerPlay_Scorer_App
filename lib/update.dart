@@ -93,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
   num _endOwned = 0;
   bool _endBeacon = false;
   bool _endCircuit = false;
-  bool _endTerminal = false; 
+  bool _endTerminal = false;
   bool _endParked = false;
   num _endNum = 0;
   num _endTotal = 0;
@@ -156,885 +156,951 @@ class _MyHomePageState extends State<MyHomePage> {
                 _endOwned = 0;
                 _endBeacon = false;
                 _endCircuit = false;
-                _endTerminal = false; 
+                _endTerminal = false;
                 _endParked = false;
                 _endNum = 0;
                 _endTotal = 0;
                 _totalAll = 0;
                 _defaultValue = 0;
               });
-              },
+            },
           ),
         ],
       ),
-      body: ListView(
-        children: <Widget>[
-          Card(
-            child: ListTile(
-              // height: 50,
-              // color: const Color.fromARGB(255, 172, 13, 1),
-              title: Center(
-                child: Text(
-                  'Autonomous',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontStyle: FontStyle.italic,
-                    fontSize: 18,
-                    fontFamily: 'Oswald',
-                    color: Colors.white,
-                  ),
+      body: ListView(children: <Widget>[
+        Card(
+          child: ListTile(
+            // height: 50,
+            // color: const Color.fromARGB(255, 172, 13, 1),
+            title: Center(
+              child: Text(
+                'Autonomous',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.italic,
+                  fontSize: 18,
+                  fontFamily: 'Oswald',
+                  color: Colors.white,
                 ),
               ),
-              subtitle: Center(
-                child: Text('30 Seconds', style: TextStyle(fontSize: 12, color: Colors.white)),
-              ),
-              tileColor: Colors.blue,
             ),
+            subtitle: Center(
+              child: Text('30 Seconds',
+                  style: TextStyle(fontSize: 12, color: Colors.white)),
+            ),
+            tileColor: Colors.blue,
           ),
-          Card(
-            child: ListTile(
-              // height: 50,
-              // color: const Color.fromARGB(255, 172, 13, 1),
-              title: Text(
-                  'Cones in Terminal',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: 'Anton',
-                    color: Color.fromARGB(255, 1, 56, 102),
-                  ),
+        ),
+        Card(
+          child: ListTile(
+            // height: 50,
+            // color: const Color.fromARGB(255, 172, 13, 1),
+            title: Text(
+              'Cones in Terminal',
+              style: TextStyle(
+                fontSize: 18,
+                fontFamily: 'Anton',
+                color: Color.fromARGB(255, 1, 56, 102),
               ),
-              trailing: Row(
+            ),
+            trailing: Row(
 //                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  // autoConesTerminal!=0? 
+                  // autoConesTerminal!=0?
                   // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
-              	  // new Text(autoConesTerminal.toString()),
+                  // new Text(autoConesTerminal.toString()),
                   // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
                   IconButton(
-                    icon: Icon(Icons.remove_circle_sharp, size: 25, color: Color.fromARGB(255, 1, 56, 102), ),
-                    onPressed: ()=>setState((){
-                      if(_autoTerminal>0){
-                        _autoTerminal--; 
-                        _autoNum--; 
+                    icon: Icon(
+                      Icons.remove_circle_sharp,
+                      size: 25,
+                      color: Color.fromARGB(255, 1, 56, 102),
+                    ),
+                    onPressed: () => setState(() {
+                      if (_autoTerminal > 0) {
+                        _autoTerminal--;
+                        _autoNum--;
                         _autoTotal--;
                         _totalAll--;
                       } else {
                         //does nothing
                       }
-                    }),  
+                    }),
                   ),
                   Text(_autoTerminal.toString()),
                   IconButton(
-                    icon: Icon(Icons.add_circle_sharp, size: 25, color: Color.fromARGB(255, 1, 56, 102)),
-                    onPressed: ()=>setState((){
-                      _autoTerminal++; 
-                      _autoNum++;  
-                      _autoTotal++;
-                      _totalAll++;
-                    }),
-                  ),
-                ]
-              ),
-              tileColor: Color.fromARGB(255, 144, 203, 252),
-              ),
-          ),
-          Card(
-            child: ListTile(
-              // height: 50,
-              // color: const Color.fromARGB(255, 172, 13, 1),
-              title: Text(
-                  'Cones on Ground Junction',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: 'Anton',
-                    color: Color.fromARGB(255, 1, 56, 102),
-                  ),
-                ),
-                trailing: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  // autoConesTerminal!=0? 
-                  // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
-              	  // new Text(autoConesTerminal.toString()),
-                  // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
-                  IconButton(
-                    icon: Icon(Icons.remove_circle_sharp, size: 25, color: Color.fromARGB(255, 1, 56, 102), ),
-                    onPressed: ()=>setState((){
-                      if(_autoGround>0){
-                        _autoGround--; 
-                        _autoNum--; 
-                        _autoTotal-=2;
-                        _totalAll-=2;
+                    icon: Icon(Icons.add_circle_sharp,
+                        size: 25, color: Color.fromARGB(255, 1, 56, 102)),
+                    onPressed: () => setState(() {
+                      if (_autoNum < 6) {
+                        _autoTerminal++;
+                        _autoNum++;
+                        _autoTotal++;
+                        _totalAll++;
                       } else {
-                        //does nothing
+                        // do nothing
                       }
-                    }),  
-                  ),
-                  Text(_autoGround.toString()),
-                  IconButton(
-                    icon: Icon(Icons.add_circle_sharp, size: 25, color: Color.fromARGB(255, 1, 56, 102)),
-                    onPressed: ()=>setState((){
-                      _autoGround++; 
-                      _autoNum++; 
-                      _autoTotal+=2;
-                      _totalAll+=2; 
                     }),
                   ),
-                ]
-              ),
-              tileColor: Color.fromARGB(255, 144, 203, 252),
-              ),
+                ]),
+            tileColor: Color.fromARGB(255, 144, 203, 252),
           ),
-          Card(
-            child: ListTile(
-              // height: 50,
-              // color: const Color.fromARGB(255, 172, 13, 1),
-              title: Text(
-                  'Cones in Low Junction',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: 'Anton',
-                    color: Color.fromARGB(255, 1, 56, 102),
-                  ),
-                ),
-                trailing: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  // autoConesTerminal!=0? 
-                  // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
-              	  // new Text(autoConesTerminal.toString()),
-                  // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
-                  IconButton(
-                    icon: Icon(Icons.remove_circle_sharp, size: 25, color: Color.fromARGB(255, 1, 56, 102), ),
-                    onPressed: ()=>setState((){
-                      if(_autoLow>0){
-                        _autoLow--; 
-                        _autoNum--; 
-                        _autoTotal--;
-                        _totalAll--;
-                      } else {
-                        //does nothing
-                      }
-                    }),  
-                  ),
-                  Text(_autoLow.toString()),
-                  IconButton(
-                    icon: Icon(Icons.add_circle_sharp, size: 25, color: Color.fromARGB(255, 1, 56, 102)),
-                    onPressed: ()=>setState((){
-                      _autoLow++; 
-                      _autoNum++;  
-                      _autoTotal += 3;
-                      _totalAll += 3;
-                    }),
-                  ),
-                ]
+        ),
+        Card(
+          child: ListTile(
+            // height: 50,
+            // color: const Color.fromARGB(255, 172, 13, 1),
+            title: Text(
+              'Cones on Ground Junction',
+              style: TextStyle(
+                fontSize: 18,
+                fontFamily: 'Anton',
+                color: Color.fromARGB(255, 1, 56, 102),
               ),
-                tileColor: Color.fromARGB(255, 144, 203, 252),
-              ),
-          ),
-          Card(
-            child: ListTile(
-              // height: 50,
-              // color: const Color.fromARGB(255, 172, 13, 1),
-              title: Text(
-                  'Cones in Medium Junction',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: 'Anton',
-                    color: Color.fromARGB(255, 1, 56, 102),
-                  ),
-                ),
-                trailing: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  // autoConesTerminal!=0? 
-                  // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
-              	  // new Text(autoConesTerminal.toString()),
-                  // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
-                  IconButton(
-                    icon: Icon(Icons.remove_circle_sharp, size: 25, color: Color.fromARGB(255, 1, 56, 102), ),
-                    onPressed: ()=>setState((){
-                      _autoMedium--; 
-                      _autoNum--; 
-                      _autoTotal -= 4;
-                      _totalAll -= 4;
-                    }),  
-                  ),
-                  Text(_autoMedium.toString()),
-                  IconButton(
-                    icon: Icon(Icons.add_circle_sharp, size: 25, color: Color.fromARGB(255, 1, 56, 102)),
-                    onPressed: ()=>setState((){
-                      _autoMedium++; 
-                      _autoNum++;
-                      _autoTotal += 4;
-                      _totalAll += 4;  
-                    }),
-                  ),
-                ]
-              ),
-                tileColor: Color.fromARGB(255, 144, 203, 252),
-              ),
-          ),
-          Card(
-            child: ListTile(
-              // height: 50,
-              // color: const Color.fromARGB(255, 172, 13, 1),
-              title: Text(
-                  'Cones in High Junction',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: 'Anton',
-                    color: Color.fromARGB(255, 1, 56, 102),
-                  ),
-                ),
-                trailing: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  // autoConesTerminal!=0? 
-                  // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
-              	  // new Text(autoConesTerminal.toString()),
-                  // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
-                  IconButton(
-                    icon: Icon(Icons.remove_circle_sharp, size: 25, color: Color.fromARGB(255, 1, 56, 102), ),
-                    onPressed: ()=>setState((){
-                      _autoHigh--; 
-                      _autoNum--;
-                      _autoTotal -= 5;
-                      _totalAll -= 5; 
-                    }),  
-                  ),
-                  Text(_autoHigh.toString()),
-                  IconButton(
-                    icon: Icon(Icons.add_circle_sharp, size: 25, color: Color.fromARGB(255, 1, 56, 102)),
-                    onPressed: ()=>setState((){
-                      _autoHigh++; 
-                      _autoNum++;
-                      _autoTotal += 5;
-                      _totalAll += 5;  
-                    }),
-                  ),
-                ]
-              ),
-                tileColor: Color.fromARGB(255, 144, 203, 252),
-              ),
-          ),
-          Card(
-            child: ListTile(
-              // height: 50,
-              // color: const Color.fromARGB(255, 172, 13, 1),
-              title: Text(
-                  'Parking?',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: 'Anton',
-                    color: Color.fromARGB(255, 1, 56, 102),
-                  ),
-                ),
-                tileColor: Color.fromARGB(255, 144, 203, 252),
-              ),
-          ),
-          Card(
-            child: ListTile(
-              // height: 50,
-              // color: const Color.fromARGB(255, 172, 13, 1),
-              title: Text(
-                  'Used Signal Sleeve?',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: 'Anton',
-                    color: Color.fromARGB(255, 1, 56, 102),
-                  ),
-                ),
-                tileColor: Color.fromARGB(255, 144, 203, 252),
-              ),
-          ),
-          Card(
-            child: ListTile(
-              // height: 50,
-              // color: const Color.fromARGB(255, 172, 13, 1),
-              title: Center(
-                child: Text(
-                  'Driver Controlled',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontStyle: FontStyle.italic,
-                    fontSize: 18,
-                    fontFamily: 'Oswald',
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              subtitle: Center(
-                child: Text('60 Seconds', style: TextStyle(fontSize: 12, color: Colors.white)),
-              ),
-              tileColor: Colors.blue,
             ),
-          ),
-          Card(
-            child: ListTile(
-              // height: 50,
-              // color: const Color.fromARGB(255, 172, 13, 1),
-              title: Text(
-                  'Cones in Terminal',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: 'Anton',
-                    color: Color.fromARGB(255, 1, 56, 102),
-                  ),
+            trailing: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
+              // autoConesTerminal!=0?
+              // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
+              // new Text(autoConesTerminal.toString()),
+              // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
+              IconButton(
+                icon: Icon(
+                  Icons.remove_circle_sharp,
+                  size: 25,
+                  color: Color.fromARGB(255, 1, 56, 102),
                 ),
-                trailing: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  // autoConesTerminal!=0? 
-                  // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
-              	  // new Text(autoConesTerminal.toString()),
-                  // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
-                  IconButton(
-                    icon: Icon(Icons.remove_circle_sharp, size: 25, color: Color.fromARGB(255, 1, 56, 102), ),
-                    onPressed: ()=>setState((){
-                      _teleTerminal--; 
-                      _teleNum--;
-                      _teleTotal--;
-                      _totalAll--;  
-                    }),  
-                  ),
-                  Text(_teleTerminal.toString()),
-                  IconButton(
-                    icon: Icon(Icons.add_circle_sharp, size: 25, color: Color.fromARGB(255, 1, 56, 102)),
-                    onPressed: ()=>setState((){
-                      _teleTerminal++; 
-                      _teleNum++;
-                      _teleTotal++;
-                      _totalAll++;  
-                    }),
-                  ),
-                ]
+                onPressed: () => setState(() {
+                  if (_autoGround > 0) {
+                    _autoGround--;
+                    _autoNum--;
+                    _autoTotal -= 2;
+                    _totalAll -= 2;
+                  } else {
+                    //does nothing
+                  }
+                }),
               ),
-                tileColor: Color.fromARGB(255, 144, 203, 252),
+              Text(_autoGround.toString()),
+              IconButton(
+                icon: Icon(Icons.add_circle_sharp,
+                    size: 25, color: Color.fromARGB(255, 1, 56, 102)),
+                onPressed: () => setState(() {
+                  if (_autoNum < 6) {
+                    _autoGround++;
+                    _autoNum++;
+                    _autoTotal += 2;
+                    _totalAll += 2;
+                  } else {
+                    // do nothing
+                  }
+                }),
               ),
+            ]),
+            tileColor: Color.fromARGB(255, 144, 203, 252),
           ),
-          Card(
-            child: ListTile(
-              // height: 50,
-              // color: const Color.fromARGB(255, 172, 13, 1),
-              title: Text(
-                  'Cones on Ground junction',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: 'Anton',
-                    color: Color.fromARGB(255, 1, 56, 102),
-                  ),
-                ),
-                trailing: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  // autoConesTerminal!=0? 
-                  // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
-              	  // new Text(autoConesTerminal.toString()),
-                  // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
-                  IconButton(
-                    icon: Icon(Icons.remove_circle_sharp, size: 25, color: Color.fromARGB(255, 1, 56, 102), ),
-                    onPressed: ()=>setState((){
-                      _teleGround--; 
-                      _teleNum--; 
-                      _teleTotal-=2;
-                      _totalAll-=2;
-                    }),  
-                  ),
-                  Text(_teleGround.toString()),
-                  IconButton(
-                    icon: Icon(Icons.add_circle_sharp, size: 25, color: Color.fromARGB(255, 1, 56, 102)),
-                    onPressed: ()=>setState((){
-                      _teleGround++; 
-                      _teleNum++; 
-                      _teleTotal+=2;
-                      _totalAll+=2; 
-                    }),
-                  ),
-                ]
+        ),
+        Card(
+          child: ListTile(
+            // height: 50,
+            // color: const Color.fromARGB(255, 172, 13, 1),
+            title: Text(
+              'Cones in Low Junction',
+              style: TextStyle(
+                fontSize: 18,
+                fontFamily: 'Anton',
+                color: Color.fromARGB(255, 1, 56, 102),
               ),
-                tileColor: Color.fromARGB(255, 144, 203, 252),
-              ),
-          ),
-          Card(
-            child: ListTile(
-              // height: 50,
-              // color: const Color.fromARGB(255, 172, 13, 1),
-              title: Text(
-                  'Cones in Low Junction',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: 'Anton',
-                    color: Color.fromARGB(255, 1, 56, 102),
-                  ),
-                ),
-                trailing: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  // autoConesTerminal!=0? 
-                  // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
-              	  // new Text(autoConesTerminal.toString()),
-                  // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
-                  IconButton(
-                    icon: Icon(Icons.remove_circle_sharp, size: 25, color: Color.fromARGB(255, 1, 56, 102), ),
-                    onPressed: ()=>setState((){
-                      _teleLow--; 
-                      _teleNum--;
-                      _teleTotal-=3;
-                      _totalAll-=3; 
-                    }),  
-                  ),
-                  Text(_teleLow.toString()),
-                  IconButton(
-                    icon: Icon(Icons.add_circle_sharp, size: 25, color: Color.fromARGB(255, 1, 56, 102)),
-                    onPressed: ()=>setState((){
-                      _teleLow++; 
-                      _teleNum++;
-                      _teleTotal+=3;
-                      _totalAll+=3;  
-                    }),
-                  ),
-                ]
-              ),
-                tileColor: Color.fromARGB(255, 144, 203, 252),
-              ),
-          ),
-          Card(
-            child: ListTile(
-              // height: 50,
-              // color: const Color.fromARGB(255, 172, 13, 1),
-              title: Text(
-                  'Cones in Medium Junction',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: 'Anton',
-                    color: Color.fromARGB(255, 1, 56, 102),
-                  ),
-                ),
-                trailing: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  // autoConesTerminal!=0? 
-                  // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
-              	  // new Text(autoConesTerminal.toString()),
-                  // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
-                  IconButton(
-                    icon: Icon(Icons.remove_circle_sharp, size: 25, color: Color.fromARGB(255, 1, 56, 102), ),
-                    onPressed: ()=>setState((){
-                      _teleMedium--; 
-                      _teleNum--;
-                      _teleTotal-=4;
-                      _totalAll-=4; 
-                    }),  
-                  ),
-                  Text(_teleMedium.toString()),
-                  IconButton(
-                    icon: Icon(Icons.add_circle_sharp, size: 25, color: Color.fromARGB(255, 1, 56, 102)),
-                    onPressed: ()=>setState((){
-                      _teleMedium++; 
-                      _teleNum++; 
-                      _teleTotal+=4;
-                      _totalAll+=4; 
-                    }),
-                  ),
-                ]
-              ),
-                tileColor: Color.fromARGB(255, 144, 203, 252),
-              ),
-          ),
-          Card(
-            child: ListTile(
-              // height: 50,
-              // color: const Color.fromARGB(255, 172, 13, 1),
-              title: Text(
-                  'Cones in High Junction',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: 'Anton',
-                    color: Color.fromARGB(255, 1, 56, 102),
-                  ),
-                ),
-                trailing: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  // autoConesTerminal!=0? 
-                  // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
-              	  // new Text(autoConesTerminal.toString()),
-                  // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
-                  IconButton(
-                    icon: Icon(Icons.remove_circle_sharp, size: 25, color: Color.fromARGB(255, 1, 56, 102), ),
-                    onPressed: ()=>setState((){
-                      _teleHigh--; 
-                      _teleNum--;
-                      _teleTotal-=5;
-                      _totalAll-=5; 
-                    }),  
-                  ),
-                  Text(_teleHigh.toString()),
-                  IconButton(
-                    icon: Icon(Icons.add_circle_sharp, size: 25, color: Color.fromARGB(255, 1, 56, 102)),
-                    onPressed: ()=>setState((){
-                      _teleHigh++; 
-                      _teleNum++;
-                      _teleTotal+=5;
-                      _totalAll+=5;  
-                    }),
-                  ),
-                ]
-              ),
-                tileColor: Color.fromARGB(255, 144, 203, 252),
-              ),
-          ),
-          Card(
-            child: ListTile(
-              // height: 50,
-              // color: const Color.fromARGB(255, 172, 13, 1),
-              title: Center(
-                child: Text(
-                  'End-Game',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontStyle: FontStyle.italic,
-                    fontSize: 18,
-                    fontFamily: 'Oswald',
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              subtitle: Center(
-                child: Text('30 Seconds', style: TextStyle(fontSize: 12, color: Colors.white)),
-              ),
-              tileColor: Colors.blue,
             ),
-          ),
-          Card(
-            child: ListTile(
-              // height: 50,
-              // color: const Color.fromARGB(255, 172, 13, 1),
-              title: Text(
-                  'Junctions Owned',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: 'Anton',
-                    color: Color.fromARGB(255, 1, 56, 102),
-                  ),
+            trailing: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
+              // autoConesTerminal!=0?
+              // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
+              // new Text(autoConesTerminal.toString()),
+              // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
+              IconButton(
+                icon: Icon(
+                  Icons.remove_circle_sharp,
+                  size: 25,
+                  color: Color.fromARGB(255, 1, 56, 102),
                 ),
-                trailing: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  // autoConesTerminal!=0? 
-                  // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
-              	  // new Text(autoConesTerminal.toString()),
-                  // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
-                  IconButton(
-                    icon: Icon(Icons.remove_circle_sharp, size: 25, color: Color.fromARGB(255, 1, 56, 102), ),
-                    onPressed: ()=>setState((){
-                      if(_endOwned>0){
-                        _endOwned--;
-                        _endNum--;
-                        _endTotal-=3; 
-                        _totalAll-=3;
-                      } else {
-                        // does nothing
-                      }
-                    }),  
-                  ),
-                  Text(_endOwned.toString()),
-                  IconButton(
-                    icon: Icon(Icons.add_circle_sharp, size: 25, color: Color.fromARGB(255, 1, 56, 102)),
-                    onPressed: ()=>setState((){
-                      _endOwned++; 
-                      _endNum++;
-                      _endTotal+=3;
-                      _totalAll+=3;  
-                    }),
-                  ),
-                ]
+                onPressed: () => setState(() {
+                  if (_autoLow > 0) {
+                    _autoLow--;
+                    _autoNum--;
+                    _autoTotal -= 3;
+                    _totalAll -= 3;
+                  } else {
+                    //does nothing
+                  }
+                }),
               ),
-                tileColor: Color.fromARGB(255, 144, 203, 252),
+              Text(_autoLow.toString()),
+              IconButton(
+                icon: Icon(Icons.add_circle_sharp,
+                    size: 25, color: Color.fromARGB(255, 1, 56, 102)),
+                onPressed: () => setState(() {
+                  if (_autoNum < 6) {
+                    _autoLow++;
+                    _autoNum++;
+                    _autoTotal += 3;
+                    _totalAll += 3;
+                  } else {
+                    // do nothing
+                  }
+                }),
               ),
+            ]),
+            tileColor: Color.fromARGB(255, 144, 203, 252),
           ),
-          Card(
-            child: ListTile(
-              // height: 50,
-              // color: const Color.fromARGB(255, 172, 13, 1),
-              title: Text(
-                  'Beacon?',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: 'Anton',
-                    color: Color.fromARGB(255, 1, 56, 102),
-                  ),
-                ),
-                tileColor: Color.fromARGB(255, 144, 203, 252),
+        ),
+        Card(
+          child: ListTile(
+            // height: 50,
+            // color: const Color.fromARGB(255, 172, 13, 1),
+            title: Text(
+              'Cones in Medium Junction',
+              style: TextStyle(
+                fontSize: 18,
+                fontFamily: 'Anton',
+                color: Color.fromARGB(255, 1, 56, 102),
               ),
-          ),
-          Card(
-            child: ListTile(
-              // height: 50,
-              // color: const Color.fromARGB(255, 172, 13, 1),
-              title: Text(
-                  'Completed Circuit?',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: 'Anton',
-                    color: Color.fromARGB(255, 1, 56, 102),
-                  ),
-                ),
-                tileColor: Color.fromARGB(255, 144, 203, 252),
-              ),
-          ),
-          Card(
-            child: ListTile(
-              // height: 50,
-              // color: const Color.fromARGB(255, 172, 13, 1),
-              title: Text(
-                  'Parked in Terminal?',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: 'Anton',
-                    color: Color.fromARGB(255, 1, 56, 102),
-                  ),
-                ),
-                tileColor: Color.fromARGB(255, 144, 203, 252),
-              ),
-          ),
-          Card(
-            child: ListTile(
-              // height: 50,
-              // color: const Color.fromARGB(255, 172, 13, 1),
-              title: Center(
-                child: Text(
-                  'Scoring Totals',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontStyle: FontStyle.italic,
-                    fontSize: 18,
-                    fontFamily: 'Oswald',
-                    color: Colors.white,
-                    decoration: TextDecoration.underline,
-                  ),
-                ),
-              ),
-              tileColor: Colors.blue,
             ),
-          ),
-          Card(
-            child: ListTile(
-              // height: 50,
-              // color: const Color.fromARGB(255, 172, 13, 1),
-              title: Text(
-                  'Autonomous:',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: 'Anton',
-                    color: Color.fromARGB(255, 1, 56, 102),
-                    decoration: TextDecoration.underline,
-                  ),
+            trailing: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
+              // autoConesTerminal!=0?
+              // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
+              // new Text(autoConesTerminal.toString()),
+              // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
+              IconButton(
+                icon: Icon(
+                  Icons.remove_circle_sharp,
+                  size: 25,
+                  color: Color.fromARGB(255, 1, 56, 102),
                 ),
-                trailing: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  // autoConesTerminal!=0? 
-                  // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
-              	  // new Text(autoConesTerminal.toString()),
-                  // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
-                  Text(_autoTotal.toString(), textScaleFactor: 1.3),
-                ]
+                onPressed: () => setState(() {
+                  if (_autoMedium > 0) {
+                    _autoMedium--;
+                    _autoNum--;
+                    _autoTotal -= 4;
+                    _totalAll -= 4;
+                  } else {
+                    //does nothing
+                  }
+                }),
               ),
-                tileColor: Color.fromARGB(255, 144, 203, 252),
+              Text(_autoMedium.toString()),
+              IconButton(
+                icon: Icon(Icons.add_circle_sharp,
+                    size: 25, color: Color.fromARGB(255, 1, 56, 102)),
+                onPressed: () => setState(() {
+                  if (_autoNum < 6) {
+                    _autoMedium++;
+                    _autoNum++;
+                    _autoTotal += 4;
+                    _totalAll += 4;
+                  } else {
+                    // do nothing
+                  }
+                }),
               ),
+            ]),
+            tileColor: Color.fromARGB(255, 144, 203, 252),
           ),
-          Card(
-            child: ListTile(
-              // height: 50,
-              // color: const Color.fromARGB(255, 172, 13, 1),
-              title: Text(
-                  'Driver Controlled:',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: 'Anton',
-                    color: Color.fromARGB(255, 1, 56, 102),
-                    decoration: TextDecoration.underline,
-                  ),
+        ),
+        Card(
+          child: ListTile(
+            // height: 50,
+            // color: const Color.fromARGB(255, 172, 13, 1),
+            title: Text(
+              'Cones in High Junction',
+              style: TextStyle(
+                fontSize: 18,
+                fontFamily: 'Anton',
+                color: Color.fromARGB(255, 1, 56, 102),
+              ),
+            ),
+            trailing: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
+              // autoConesTerminal!=0?
+              // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
+              // new Text(autoConesTerminal.toString()),
+              // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
+              IconButton(
+                icon: Icon(
+                  Icons.remove_circle_sharp,
+                  size: 25,
+                  color: Color.fromARGB(255, 1, 56, 102),
                 ),
-                trailing: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  // autoConesTerminal!=0? 
-                  // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
-              	  // new Text(autoConesTerminal.toString()),
-                  // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
-                  Text(_teleTotal.toString(), textScaleFactor: 1.3),
-                ]
+                onPressed: () => setState(() {
+                  if (_autoHigh > 0) {
+                    _autoHigh--;
+                    _autoNum--;
+                    _autoTotal -= 5;
+                    _totalAll -= 5;
+                  } else {
+                    //does nothing
+                  }
+                }),
               ),
-                tileColor: Color.fromARGB(255, 144, 203, 252),
+              Text(_autoHigh.toString()),
+              IconButton(
+                icon: Icon(Icons.add_circle_sharp,
+                    size: 25, color: Color.fromARGB(255, 1, 56, 102)),
+                onPressed: () => setState(() {
+                  if (_autoNum < 6) {
+                    _autoHigh++;
+                    _autoNum++;
+                    _autoTotal += 5;
+                    _totalAll += 5;
+                  } else {
+                    // do nothing
+                  }
+                }),
               ),
+            ]),
+            tileColor: Color.fromARGB(255, 144, 203, 252),
           ),
-          Card(
-            child: ListTile(
-              // height: 50,
-              // color: const Color.fromARGB(255, 172, 13, 1),
-              title: Text(
-                  'End Game:',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: 'Anton',
-                    color: Color.fromARGB(255, 1, 56, 102),
-                    decoration: TextDecoration.underline,
-                  ),
+        ),
+        Card(
+          child: ListTile(
+            // height: 50,
+            // color: const Color.fromARGB(255, 172, 13, 1),
+            title: Text(
+              'Parking?',
+              style: TextStyle(
+                fontSize: 18,
+                fontFamily: 'Anton',
+                color: Color.fromARGB(255, 1, 56, 102),
+              ),
+            ),
+            tileColor: Color.fromARGB(255, 144, 203, 252),
+          ),
+        ),
+        Card(
+          child: ListTile(
+            // height: 50,
+            // color: const Color.fromARGB(255, 172, 13, 1),
+            title: Text(
+              'Used Signal Sleeve?',
+              style: TextStyle(
+                fontSize: 18,
+                fontFamily: 'Anton',
+                color: Color.fromARGB(255, 1, 56, 102),
+              ),
+            ),
+            tileColor: Color.fromARGB(255, 144, 203, 252),
+          ),
+        ),
+        Card(
+          child: ListTile(
+            // height: 50,
+            // color: const Color.fromARGB(255, 172, 13, 1),
+            title: Center(
+              child: Text(
+                'Driver Controlled',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.italic,
+                  fontSize: 18,
+                  fontFamily: 'Oswald',
+                  color: Colors.white,
                 ),
-                trailing: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  // autoConesTerminal!=0? 
-                  // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
-              	  // new Text(autoConesTerminal.toString()),
-                  // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
-                  Text(_endTotal.toString(), textScaleFactor: 1.3),
-                ]
               ),
-                tileColor: Color.fromARGB(255, 144, 203, 252),
-              ),
+            ),
+            subtitle: Center(
+              child: Text('60 Seconds',
+                  style: TextStyle(fontSize: 12, color: Colors.white)),
+            ),
+            tileColor: Colors.blue,
           ),
-          Card(
-            child: ListTile(
-              // height: 50,
-              // color: const Color.fromARGB(255, 172, 13, 1),
-              title: Text(
-                  'Total:',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: 'Anton',
-                    color: Color.fromARGB(255, 196, 229, 255),
-                    decoration: TextDecoration.underline,
-                  ),
+        ),
+        Card(
+          child: ListTile(
+            // height: 50,
+            // color: const Color.fromARGB(255, 172, 13, 1),
+            title: Text(
+              'Cones in Terminal',
+              style: TextStyle(
+                fontSize: 18,
+                fontFamily: 'Anton',
+                color: Color.fromARGB(255, 1, 56, 102),
+              ),
+            ),
+            trailing: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
+              // autoConesTerminal!=0?
+              // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
+              // new Text(autoConesTerminal.toString()),
+              // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
+              IconButton(
+                icon: Icon(
+                  Icons.remove_circle_sharp,
+                  size: 25,
+                  color: Color.fromARGB(255, 1, 56, 102),
                 ),
-                trailing: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  // autoConesTerminal!=0? 
-                  // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
-              	  // new Text(autoConesTerminal.toString()),
-                  // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
-                  Text(_totalAll.toString(), textScaleFactor: 1.5, style: TextStyle(
-                    color: Color.fromARGB(255, 196, 229, 255),
-                    fontWeight: FontWeight.bold,
-                  ),),
-                ]
+                onPressed: () => setState(() {
+                  if (_teleTerminal > 0) {
+                    _teleTerminal--;
+                    _teleNum--;
+                    _teleTotal--;
+                    _totalAll--;
+                  } else {
+                    //does nothing
+                  }
+                }),
               ),
-                tileColor: Color.fromARGB(255, 1, 56, 102),
+              Text(_teleTerminal.toString()),
+              IconButton(
+                icon: Icon(Icons.add_circle_sharp,
+                    size: 25, color: Color.fromARGB(255, 1, 56, 102)),
+                onPressed: () => setState(() {
+                  _teleTerminal++;
+                  _teleNum++;
+                  _teleTotal++;
+                  _totalAll++;
+                }),
               ),
+            ]),
+            tileColor: Color.fromARGB(255, 144, 203, 252),
           ),
-        ]
-        //   Container(
-        //     height: 50,
-        //     color: const Color.fromARGB(255, 179, 34, 23),
-        //     child: const Center(
-        //       child: Text(
-        //       'Autonomous - 30 Seconds',
-        //       style: TextStyle(
-        //         fontSize: 18,
-        //         fontFamily: 'Anton',
-        //         color: Colors.black87,
-        //       ),
-        //       ),
-        //     ),
-        //   ),
-        //   Container(
-        //     padding: const EdgeInsets.all(8.0),
-        //     height: 50,
-        //     color: Colors.red,
-        //     child: const Text(
-        //       'Cones in Terminal',
-        //       style: TextStyle(
-        //         fontSize: 18,
-        //         fontFamily: 'Anton',
-        //         color: Colors.white,
-        //       ),
-        //     ),
-        //   ),
-        //   Container(
-        //     padding: const EdgeInsets.all(8.0),
-        //     height: 50,
-        //     color: Colors.red,
-        //     child: const Text(
-        //       'Cones on Ground Junction',
-        //       style: TextStyle(
-        //         fontSize: 18,
-        //         fontFamily: 'Anton',
-        //         color: Colors.white,
-        //       ),
-        //     ),
-        //   ),
-        //   Container(
-        //     padding: const EdgeInsets.all(8.0),
-        //     height: 50,
-        //     color: Colors.red,
-        //     child: const Text(
-        //       'Cones in Low Junction',
-        //       style: TextStyle(
-        //         fontSize: 18,
-        //         fontFamily: 'Anton',
-        //         color: Colors.white,
-        //       ),
-        //     ),
-        //   ),
-        //   Container(
-        //     padding: const EdgeInsets.all(8.0),
-        //     height: 50,
-        //     color: Colors.red,
-        //     child: const Text(
-        //       'Cones in Medium Junction',
-        //       style: TextStyle(
-        //         fontSize: 18,
-        //         fontFamily: 'Anton',
-        //         color: Colors.white,
-        //       ),
-        //     ),
-        //   ),
-        //   Container(
-        //     padding: const EdgeInsets.all(8.0),
-        //     height: 50,
-        //     color: Colors.red,
-        //     child: const Text(
-        //       'Cones in High Junction',
-        //       style: TextStyle(
-        //         fontSize: 18,
-        //         fontFamily: 'Anton',
-        //         color: Colors.white,
-        //       ),
-        //     ),
-        //   ),
-        //   Container(
-        //     padding: const EdgeInsets.all(8.0),
-        //     height: 50,
-        //     color: Colors.red,
-        //     child: const Text(
-        //       'Parked?',
-        //       style: TextStyle(
-        //         fontSize: 18,
-        //         fontFamily: 'Anton',
-        //         color: Colors.white,
-        //       ),
-        //     ),
-        //   ),
-        //   Container(
-        //     padding: const EdgeInsets.all(8.0),
-        //     height: 50,
-        //     color: Colors.red,
-        //     child: const Text(
-        //       'Used Signal Sleeve?',
-        //       style: TextStyle(
-        //         fontSize: 18,
-        //         fontFamily: 'Anton',
-        //         color: Colors.white,
-        //       ),
-        //     ),
-        //   ),
-        // ],
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+        ),
+        Card(
+          child: ListTile(
+            // height: 50,
+            // color: const Color.fromARGB(255, 172, 13, 1),
+            title: Text(
+              'Cones on Ground junction',
+              style: TextStyle(
+                fontSize: 18,
+                fontFamily: 'Anton',
+                color: Color.fromARGB(255, 1, 56, 102),
+              ),
+            ),
+            trailing: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
+              // autoConesTerminal!=0?
+              // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
+              // new Text(autoConesTerminal.toString()),
+              // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
+              IconButton(
+                icon: Icon(
+                  Icons.remove_circle_sharp,
+                  size: 25,
+                  color: Color.fromARGB(255, 1, 56, 102),
+                ),
+                onPressed: () => setState(() {
+                  if (_teleGround > 0) {
+                    _teleGround--;
+                    _teleNum--;
+                    _teleTotal -= 2;
+                    _totalAll -= 2;
+                  } else {
+                    //does nothing
+                  }
+                }),
+              ),
+              Text(_teleGround.toString()),
+              IconButton(
+                icon: Icon(Icons.add_circle_sharp,
+                    size: 25, color: Color.fromARGB(255, 1, 56, 102)),
+                onPressed: () => setState(() {
+                  _teleGround++;
+                  _teleNum++;
+                  _teleTotal += 2;
+                  _totalAll += 2;
+                }),
+              ),
+            ]),
+            tileColor: Color.fromARGB(255, 144, 203, 252),
+          ),
+        ),
+        Card(
+          child: ListTile(
+            // height: 50,
+            // color: const Color.fromARGB(255, 172, 13, 1),
+            title: Text(
+              'Cones in Low Junction',
+              style: TextStyle(
+                fontSize: 18,
+                fontFamily: 'Anton',
+                color: Color.fromARGB(255, 1, 56, 102),
+              ),
+            ),
+            trailing: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
+              // autoConesTerminal!=0?
+              // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
+              // new Text(autoConesTerminal.toString()),
+              // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
+              IconButton(
+                icon: Icon(
+                  Icons.remove_circle_sharp,
+                  size: 25,
+                  color: Color.fromARGB(255, 1, 56, 102),
+                ),
+                onPressed: () => setState(() {
+                  if (_teleLow > 0) {
+                    _teleLow--;
+                    _teleNum--;
+                    _teleTotal -= 3;
+                    _totalAll -= 3;
+                  } else {
+                    //does nothing
+                  }
+                }),
+              ),
+              Text(_teleLow.toString()),
+              IconButton(
+                icon: Icon(Icons.add_circle_sharp,
+                    size: 25, color: Color.fromARGB(255, 1, 56, 102)),
+                onPressed: () => setState(() {
+                  _teleLow++;
+                  _teleNum++;
+                  _teleTotal += 3;
+                  _totalAll += 3;
+                }),
+              ),
+            ]),
+            tileColor: Color.fromARGB(255, 144, 203, 252),
+          ),
+        ),
+        Card(
+          child: ListTile(
+            // height: 50,
+            // color: const Color.fromARGB(255, 172, 13, 1),
+            title: Text(
+              'Cones in Medium Junction',
+              style: TextStyle(
+                fontSize: 18,
+                fontFamily: 'Anton',
+                color: Color.fromARGB(255, 1, 56, 102),
+              ),
+            ),
+            trailing: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
+              // autoConesTerminal!=0?
+              // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
+              // new Text(autoConesTerminal.toString()),
+              // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
+              IconButton(
+                icon: Icon(
+                  Icons.remove_circle_sharp,
+                  size: 25,
+                  color: Color.fromARGB(255, 1, 56, 102),
+                ),
+                onPressed: () => setState(() {
+                  if (_teleMedium > 0) {
+                    _teleMedium--;
+                    _teleNum--;
+                    _teleTotal -= 4;
+                    _totalAll -= 4;
+                  } else {
+                    //does nothing
+                  }
+                }),
+              ),
+              Text(_teleMedium.toString()),
+              IconButton(
+                icon: Icon(Icons.add_circle_sharp,
+                    size: 25, color: Color.fromARGB(255, 1, 56, 102)),
+                onPressed: () => setState(() {
+                  _teleMedium++;
+                  _teleNum++;
+                  _teleTotal += 4;
+                  _totalAll += 4;
+                }),
+              ),
+            ]),
+            tileColor: Color.fromARGB(255, 144, 203, 252),
+          ),
+        ),
+        Card(
+          child: ListTile(
+            // height: 50,
+            // color: const Color.fromARGB(255, 172, 13, 1),
+            title: Text(
+              'Cones in High Junction',
+              style: TextStyle(
+                fontSize: 18,
+                fontFamily: 'Anton',
+                color: Color.fromARGB(255, 1, 56, 102),
+              ),
+            ),
+            trailing: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
+              // autoConesTerminal!=0?
+              // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
+              // new Text(autoConesTerminal.toString()),
+              // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
+              IconButton(
+                icon: Icon(
+                  Icons.remove_circle_sharp,
+                  size: 25,
+                  color: Color.fromARGB(255, 1, 56, 102),
+                ),
+                onPressed: () => setState(() {
+                  if (_teleHigh > 0) {
+                    _teleHigh--;
+                    _teleNum--;
+                    _teleTotal -= 5;
+                    _totalAll -= 5;
+                  } else {
+                    //does nothing
+                  }
+                }),
+              ),
+              Text(_teleHigh.toString()),
+              IconButton(
+                icon: Icon(Icons.add_circle_sharp,
+                    size: 25, color: Color.fromARGB(255, 1, 56, 102)),
+                onPressed: () => setState(() {
+                  _teleHigh++;
+                  _teleNum++;
+                  _teleTotal += 5;
+                  _totalAll += 5;
+                }),
+              ),
+            ]),
+            tileColor: Color.fromARGB(255, 144, 203, 252),
+          ),
+        ),
+        Card(
+          child: ListTile(
+            // height: 50,
+            // color: const Color.fromARGB(255, 172, 13, 1),
+            title: Center(
+              child: Text(
+                'End-Game',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.italic,
+                  fontSize: 18,
+                  fontFamily: 'Oswald',
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            subtitle: Center(
+              child: Text('30 Seconds',
+                  style: TextStyle(fontSize: 12, color: Colors.white)),
+            ),
+            tileColor: Colors.blue,
+          ),
+        ),
+        Card(
+          child: ListTile(
+            // height: 50,
+            // color: const Color.fromARGB(255, 172, 13, 1),
+            title: Text(
+              'Junctions Owned',
+              style: TextStyle(
+                fontSize: 18,
+                fontFamily: 'Anton',
+                color: Color.fromARGB(255, 1, 56, 102),
+              ),
+            ),
+            trailing: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
+              // autoConesTerminal!=0?
+              // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
+              // new Text(autoConesTerminal.toString()),
+              // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
+              IconButton(
+                icon: Icon(
+                  Icons.remove_circle_sharp,
+                  size: 25,
+                  color: Color.fromARGB(255, 1, 56, 102),
+                ),
+                onPressed: () => setState(() {
+                  if (_endOwned > 0) {
+                    _endOwned--;
+                    _endNum--;
+                    _endTotal -= 3;
+                    _totalAll -= 3;
+                  } else {
+                    // does nothing
+                  }
+                }),
+              ),
+              Text(_endOwned.toString()),
+              IconButton(
+                icon: Icon(Icons.add_circle_sharp,
+                    size: 25, color: Color.fromARGB(255, 1, 56, 102)),
+                onPressed: () => setState(() {
+                  _endOwned++;
+                  _endNum++;
+                  _endTotal += 3;
+                  _totalAll += 3;
+                }),
+              ),
+            ]),
+            tileColor: Color.fromARGB(255, 144, 203, 252),
+          ),
+        ),
+        Card(
+          child: ListTile(
+            // height: 50,
+            // color: const Color.fromARGB(255, 172, 13, 1),
+            title: Text(
+              'Beacon?',
+              style: TextStyle(
+                fontSize: 18,
+                fontFamily: 'Anton',
+                color: Color.fromARGB(255, 1, 56, 102),
+              ),
+            ),
+            tileColor: Color.fromARGB(255, 144, 203, 252),
+          ),
+        ),
+        Card(
+          child: ListTile(
+            // height: 50,
+            // color: const Color.fromARGB(255, 172, 13, 1),
+            title: Text(
+              'Completed Circuit?',
+              style: TextStyle(
+                fontSize: 18,
+                fontFamily: 'Anton',
+                color: Color.fromARGB(255, 1, 56, 102),
+              ),
+            ),
+            tileColor: Color.fromARGB(255, 144, 203, 252),
+          ),
+        ),
+        Card(
+          child: ListTile(
+            // height: 50,
+            // color: const Color.fromARGB(255, 172, 13, 1),
+            title: Text(
+              'Parked in Terminal?',
+              style: TextStyle(
+                fontSize: 18,
+                fontFamily: 'Anton',
+                color: Color.fromARGB(255, 1, 56, 102),
+              ),
+            ),
+            tileColor: Color.fromARGB(255, 144, 203, 252),
+          ),
+        ),
+        Card(
+          child: ListTile(
+            // height: 50,
+            // color: const Color.fromARGB(255, 172, 13, 1),
+            title: Center(
+              child: Text(
+                'Scoring Totals',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.italic,
+                  fontSize: 18,
+                  fontFamily: 'Oswald',
+                  color: Colors.white,
+                  decoration: TextDecoration.underline,
+                ),
+              ),
+            ),
+            tileColor: Colors.blue,
+          ),
+        ),
+        Card(
+          child: ListTile(
+            // height: 50,
+            // color: const Color.fromARGB(255, 172, 13, 1),
+            title: Text(
+              'Autonomous:',
+              style: TextStyle(
+                fontSize: 18,
+                fontFamily: 'Anton',
+                color: Color.fromARGB(255, 1, 56, 102),
+                decoration: TextDecoration.underline,
+              ),
+            ),
+            trailing: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
+              // autoConesTerminal!=0?
+              // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
+              // new Text(autoConesTerminal.toString()),
+              // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
+              Text(_autoTotal.toString(), textScaleFactor: 1.3),
+            ]),
+            tileColor: Color.fromARGB(255, 144, 203, 252),
+          ),
+        ),
+        Card(
+          child: ListTile(
+            // height: 50,
+            // color: const Color.fromARGB(255, 172, 13, 1),
+            title: Text(
+              'Driver Controlled:',
+              style: TextStyle(
+                fontSize: 18,
+                fontFamily: 'Anton',
+                color: Color.fromARGB(255, 1, 56, 102),
+                decoration: TextDecoration.underline,
+              ),
+            ),
+            trailing: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
+              // autoConesTerminal!=0?
+              // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
+              // new Text(autoConesTerminal.toString()),
+              // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
+              Text(_teleTotal.toString(), textScaleFactor: 1.3),
+            ]),
+            tileColor: Color.fromARGB(255, 144, 203, 252),
+          ),
+        ),
+        Card(
+          child: ListTile(
+            // height: 50,
+            // color: const Color.fromARGB(255, 172, 13, 1),
+            title: Text(
+              'End Game:',
+              style: TextStyle(
+                fontSize: 18,
+                fontFamily: 'Anton',
+                color: Color.fromARGB(255, 1, 56, 102),
+                decoration: TextDecoration.underline,
+              ),
+            ),
+            trailing: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
+              // autoConesTerminal!=0?
+              // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
+              // new Text(autoConesTerminal.toString()),
+              // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
+              Text(_endTotal.toString(), textScaleFactor: 1.3),
+            ]),
+            tileColor: Color.fromARGB(255, 144, 203, 252),
+          ),
+        ),
+        Card(
+          child: ListTile(
+            // height: 50,
+            // color: const Color.fromARGB(255, 172, 13, 1),
+            title: Text(
+              'Total:',
+              style: TextStyle(
+                fontSize: 18,
+                fontFamily: 'Anton',
+                color: Color.fromARGB(255, 196, 229, 255),
+                decoration: TextDecoration.underline,
+              ),
+            ),
+            trailing: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
+              // autoConesTerminal!=0?
+              // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
+              // new Text(autoConesTerminal.toString()),
+              // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
+              Text(
+                _totalAll.toString(),
+                textScaleFactor: 1.5,
+                style: TextStyle(
+                  color: Color.fromARGB(255, 196, 229, 255),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ]),
+            tileColor: Color.fromARGB(255, 1, 56, 102),
+          ),
+        ),
+      ]
+          //   Container(
+          //     height: 50,
+          //     color: const Color.fromARGB(255, 179, 34, 23),
+          //     child: const Center(
+          //       child: Text(
+          //       'Autonomous - 30 Seconds',
+          //       style: TextStyle(
+          //         fontSize: 18,
+          //         fontFamily: 'Anton',
+          //         color: Colors.black87,
+          //       ),
+          //       ),
+          //     ),
+          //   ),
+          //   Container(
+          //     padding: const EdgeInsets.all(8.0),
+          //     height: 50,
+          //     color: Colors.red,
+          //     child: const Text(
+          //       'Cones in Terminal',
+          //       style: TextStyle(
+          //         fontSize: 18,
+          //         fontFamily: 'Anton',
+          //         color: Colors.white,
+          //       ),
+          //     ),
+          //   ),
+          //   Container(
+          //     padding: const EdgeInsets.all(8.0),
+          //     height: 50,
+          //     color: Colors.red,
+          //     child: const Text(
+          //       'Cones on Ground Junction',
+          //       style: TextStyle(
+          //         fontSize: 18,
+          //         fontFamily: 'Anton',
+          //         color: Colors.white,
+          //       ),
+          //     ),
+          //   ),
+          //   Container(
+          //     padding: const EdgeInsets.all(8.0),
+          //     height: 50,
+          //     color: Colors.red,
+          //     child: const Text(
+          //       'Cones in Low Junction',
+          //       style: TextStyle(
+          //         fontSize: 18,
+          //         fontFamily: 'Anton',
+          //         color: Colors.white,
+          //       ),
+          //     ),
+          //   ),
+          //   Container(
+          //     padding: const EdgeInsets.all(8.0),
+          //     height: 50,
+          //     color: Colors.red,
+          //     child: const Text(
+          //       'Cones in Medium Junction',
+          //       style: TextStyle(
+          //         fontSize: 18,
+          //         fontFamily: 'Anton',
+          //         color: Colors.white,
+          //       ),
+          //     ),
+          //   ),
+          //   Container(
+          //     padding: const EdgeInsets.all(8.0),
+          //     height: 50,
+          //     color: Colors.red,
+          //     child: const Text(
+          //       'Cones in High Junction',
+          //       style: TextStyle(
+          //         fontSize: 18,
+          //         fontFamily: 'Anton',
+          //         color: Colors.white,
+          //       ),
+          //     ),
+          //   ),
+          //   Container(
+          //     padding: const EdgeInsets.all(8.0),
+          //     height: 50,
+          //     color: Colors.red,
+          //     child: const Text(
+          //       'Parked?',
+          //       style: TextStyle(
+          //         fontSize: 18,
+          //         fontFamily: 'Anton',
+          //         color: Colors.white,
+          //       ),
+          //     ),
+          //   ),
+          //   Container(
+          //     padding: const EdgeInsets.all(8.0),
+          //     height: 50,
+          //     color: Colors.red,
+          //     child: const Text(
+          //       'Used Signal Sleeve?',
+          //       style: TextStyle(
+          //         fontSize: 18,
+          //         fontFamily: 'Anton',
+          //         color: Colors.white,
+          //       ),
+          //     ),
+          //   ),
+          // ],
+          ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
