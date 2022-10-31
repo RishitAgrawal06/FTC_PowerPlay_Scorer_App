@@ -81,20 +81,21 @@ class _MyHomePageState extends State<MyHomePage> {
   num _autoHigh = 0;
   bool _autoParking = false;
   bool _autoSleeve = false;
-  num _AUTONUM = 0;
-  num _AUTOTOTAL = 0;
+  num _autoNum = 0;
+  num _autoTotal = 0;
   num _teleTerminal = 0;
   num _teleGround = 0;
   num _teleLow = 0;
   num _teleMedium = 0;
   num _teleHigh = 0;
-  num _teleHigh = 0;
+  num _teleNum = 0;
+  num _teleTotal = 0;
   num _endOwned = 0;
   bool _endBeacon = false;
   bool _endCircuit = false;
   bool _endTerminal = false; 
   bool _endParked = false;
-
+  num _totalAll = 0;
   num _defaultValue = 0;
   // void _incrementCounter() {
   //   setState(() {
@@ -133,8 +134,31 @@ class _MyHomePageState extends State<MyHomePage> {
               color: Colors.white,
             ),
             onPressed: () {
-              // do something
-          },
+              setState(() {
+                _autoTerminal = _defaultValue;
+                _autoGround = _defaultValue;
+                _autoLow = _defaultValue;
+                _autoMedium = _defaultValue;
+                _autoHigh = _defaultValue;
+                _autoParking = false;
+                _autoSleeve = false;
+                _autoNum = _defaultValue;
+                _autoTotal = _defaultValue;
+                _teleTerminal = _defaultValue;
+                _teleGround = _defaultValue;
+                _teleLow = _defaultValue;
+                _teleMedium = _defaultValue;
+                _teleHigh = _defaultValue;
+                _teleNum = _defaultValue;
+                _teleTotal = _defaultValue;
+                _endOwned = _defaultValue;
+                _endBeacon = false;
+                _endCircuit = false;
+                _endTerminal = false;
+                _endParked = false;
+                _totalAll = _defaultValue;
+              });
+              },
           ),
         ],
       ),
@@ -207,6 +231,24 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: Color.fromARGB(255, 1, 56, 102),
                   ),
                 ),
+                trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  // autoConesTerminal!=0? 
+                  // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
+              	  // new Text(autoConesTerminal.toString()),
+                  // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
+                  IconButton(
+                    icon: Icon(Icons.remove_circle_sharp, size: 30, color: Color.fromARGB(255, 1, 56, 102), ),
+                    onPressed: ()=>setState(()=>_autoGround--),    
+                  ),
+                  Text(_autoGround.toString()),
+                  IconButton(
+                    icon: Icon(Icons.add_circle_sharp, size: 30, color: Color.fromARGB(255, 1, 56, 102)),
+                    onPressed: ()=>setState(()=>_autoGround++),
+                  ),
+                ]
+              ),
               tileColor: Color.fromARGB(255, 144, 203, 252),
               ),
           ),
