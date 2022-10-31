@@ -746,7 +746,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   'Beacon?',
                   style: TextStyle(
                     fontSize: 18,
-                    fontFamily: 'Anton',
+                    fontFamily: 'Anton', //test
                     color: Color.fromARGB(255, 1, 56, 102),
                   ),
                 ),
