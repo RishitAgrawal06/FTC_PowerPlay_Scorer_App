@@ -79,8 +79,9 @@ class _MyHomePageState extends State<MyHomePage> {
   num _autoLow = 0;
   num _autoMedium = 0;
   num _autoHigh = 0;
-  bool _autoParking = false;
-  bool _autoSleeve = false;
+  var _autoParking = "Not Parked";
+  num _autoParkingCount = 0;
+  num _autoParkingTemp = 0;
   num _autoNum = 0;
   num _autoTotal = 0;
   num _teleTerminal = 0;
@@ -142,8 +143,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 _autoLow = 0;
                 _autoMedium = 0;
                 _autoHigh = 0;
-                _autoParking = false;
-                _autoSleeve = false;
+                _autoParking = "Not Parked";
+                _autoParkingCount = 0;
                 _autoNum = 0;
                 _autoTotal = 0;
                 _teleTerminal = 0;
@@ -464,31 +465,105 @@ class _MyHomePageState extends State<MyHomePage> {
             // height: 50,
             // color: const Color.fromARGB(255, 172, 13, 1),
             title: Text(
-              'Parking?',
+              'Parking',
               style: TextStyle(
                 fontSize: 18,
                 fontFamily: 'Anton',
                 color: Color.fromARGB(255, 1, 56, 102),
               ),
             ),
-            tileColor: Color.fromARGB(255, 144, 203, 252),
-          ),
-        ),
-        Card(
-          child: ListTile(
-            // height: 50,
-            // color: const Color.fromARGB(255, 172, 13, 1),
-            title: Text(
-              'Used Signal Sleeve?',
-              style: TextStyle(
-                fontSize: 18,
-                fontFamily: 'Anton',
-                color: Color.fromARGB(255, 1, 56, 102),
+            trailing: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
+              // autoConesTerminal!=0?
+              // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
+              // new Text(autoConesTerminal.toString()),
+              // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
+              IconButton(
+                icon: Icon(
+                  Icons.arrow_circle_left,
+                  size: 25,
+                  color: Color.fromARGB(255, 1, 56, 102),
+                ),
+                onPressed: () => setState(() {
+                  if (_autoParkingCount>0) {
+                    _autoParkingCount--;
+                  } else {
+                    //does nothing
+                  }
+                  if (_autoParkingCount==0&&_autoParking=="Not Parked"){
+                    // do nothing
+                  } else if (_autoParkingCount==0){
+                    _autoParking = "Not Parked";
+                    _autoTotal -= 2;
+                    _totalAll -= 2;
+                  } else if (_autoParkingCount==1){
+                    _autoParking = "Terminal";
+                  } else if (_autoParkingCount==2){
+                    _autoParking = "Substation";
+                    _autoTotal -= 10;
+                    _autoTotal += 2;
+                    _totalAll -= 8;
+                  } else if (_autoParkingCount==3){
+                    _autoParking = "Signal Zone";
+                    _autoTotal -= 20;
+                    _autoTotal += 10;
+                    _totalAll -= 10;
+                  } else {
+                    _autoParking = "Sleeve Zone";
+                  }
+                }),
               ),
-            ),
+              Text(_autoParking.toString()),
+              IconButton(
+                icon: Icon(Icons.arrow_circle_right,
+                    size: 25, color: Color.fromARGB(255, 1, 56, 102)),
+                onPressed: () => setState(() {
+                  if (_autoParkingCount<4) {
+                    _autoParkingCount++;
+                  } else {
+                    //does nothing
+                  }
+                  if (_autoParkingCount==0){
+                    _autoParking = "Not Parked";
+                  } else if (_autoParkingCount==1){
+                    _autoParking = "Terminal";
+                    _autoTotal += 2;
+                    _totalAll += 2;
+                  } else if (_autoParkingCount==2){
+                    _autoParking = "Substation";
+                  } else if (_autoParkingCount==3){
+                    _autoParking = "Signal Zone";
+                    _autoTotal -= 2;
+                    _autoTotal += 10;
+                    _totalAll += 8;
+                  } else if (_autoParkingCount==4&&_autoParking=="Sleeve Zone"){
+                    // do nothing
+                  } else if (_autoParkingCount==4){
+                    _autoParking = "Sleeve Zone";
+                    _autoTotal -=10;
+                    _autoTotal += 20;
+                    _totalAll += 10;
+                  }
+                }),
+              ),
+            ]),
             tileColor: Color.fromARGB(255, 144, 203, 252),
           ),
         ),
+//         Card(
+//           child: ListTile(
+//             // height: 50,
+//             // color: const Color.fromARGB(255, 172, 13, 1),
+//             title: Text(
+//               'Used Signal Sleeve?',
+//               style: TextStyle(
+//                 fontSize: 18,
+//                 fontFamily: 'Anton',
+//                 color: Color.fromARGB(255, 1, 56, 102),
+//               ),
+//             ),
+//             tileColor: Color.fromARGB(255, 144, 203, 252),
+//           ),
+//         ),
         Card(
           child: ListTile(
             // height: 50,
@@ -834,13 +909,87 @@ class _MyHomePageState extends State<MyHomePage> {
             // height: 50,
             // color: const Color.fromARGB(255, 172, 13, 1),
             title: Text(
-              'Beacon?',
+              'Beacon',
               style: TextStyle(
                 fontSize: 18,
                 fontFamily: 'Anton',
                 color: Color.fromARGB(255, 1, 56, 102),
               ),
             ),
+            trailing: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
+              // autoConesTerminal!=0?
+              // new IconButton(icon: new Icon(Icons.remove),onPressed: ()=>setState(()=>autoConesTerminal--),),
+              // new Text(autoConesTerminal.toString()),
+              // new IconButton(icon: new Icon(Icons.add),onPressed: ()=>setState(()=>autoConesTerminal++)),
+              IconButton(
+                icon: Icon(
+                  Icons.arrow_circle_left,
+                  size: 25,
+                  color: Color.fromARGB(255, 1, 56, 102),
+                ),
+                onPressed: () => setState(() {
+                  if (_autoParkingCount>0) {
+                    _autoBeacon = true;
+                  } else {
+                    //does nothing
+                  }
+                  if (_autoParkingCount==0&&_autoParking=="Not Parked"){
+                    // do nothing
+                  } else if (_autoParkingCount==0){
+                    _autoParking = "Not Parked";
+                    _autoTotal -= 2;
+                    _totalAll -= 2;
+                  } else if (_autoParkingCount==1){
+                    _autoParking = "Terminal";
+                  } else if (_autoParkingCount==2){
+                    _autoParking = "Substation";
+                    _autoTotal -= 10;
+                    _autoTotal += 2;
+                    _totalAll -= 8;
+                  } else if (_autoParkingCount==3){
+                    _autoParking = "Signal Zone";
+                    _autoTotal -= 20;
+                    _autoTotal += 10;
+                    _totalAll -= 10;
+                  } else {
+                    _autoParking = "Sleeve Zone";
+                  }
+                }),
+              ),
+              Text(_autoParking.toString()),
+              IconButton(
+                icon: Icon(Icons.arrow_circle_right,
+                    size: 25, color: Color.fromARGB(255, 1, 56, 102)),
+                onPressed: () => setState(() {
+                  if (_autoParkingCount<4) {
+                    _autoParkingCount++;
+                  } else {
+                    //does nothing
+                  }
+                  if (_autoParkingCount==0){
+                    _autoParking = "Not Parked";
+                  } else if (_autoParkingCount==1){
+                    _autoParking = "Terminal";
+                    _autoTotal += 2;
+                    _totalAll += 2;
+                  } else if (_autoParkingCount==2){
+                    _autoParking = "Substation";
+                  } else if (_autoParkingCount==3){
+                    _autoParking = "Signal Zone";
+                    _autoTotal -= 2;
+                    _autoTotal += 10;
+                    _totalAll += 8;
+                  } else if (_autoParkingCount==4&&_autoParking=="Sleeve Zone"){
+                    // do nothing
+                  } else if (_autoParkingCount==4){
+                    _autoParking = "Sleeve Zone";
+                    _autoTotal -=10;
+                    _autoTotal += 20;
+                    _totalAll += 10;
+                  }
+                }),
+              ),
+            ]),
             tileColor: Color.fromARGB(255, 144, 203, 252),
           ),
         ),
